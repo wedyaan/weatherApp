@@ -11,12 +11,14 @@ async function weatherInCity(city) {
       `&appid=${apiKey}`
   );
   let data = await response.json();
+  // console.log(data);
 
   document.getElementById("city").innerHTML = data.name;
   document.getElementById("temp").innerHTML =
     Math.round(data.main.temp) + " °C";
   document.getElementById("humid").innerHTML = data.main.humidity + "%";
-  document.getElementById("wind").innerHTML = data.wind.speed + "Km/H";
+  document.getElementById("description").innerText =
+    data.weather[0].description;
 
   if (data.weather[0].main == "Clouds") {
     weatherImage.src = "/Cloud.png.crdownload";
